@@ -1,0 +1,29 @@
+{% import "_includes/forms" as forms %}
+
+<div class="field">
+  <div class="heading">
+    <label for="fastlyApiKey">Fastly API Key</label>
+  </div>
+  <div class="instructions">
+    <p>Can be found at https://app.fastly.com/#account</p>
+  </div>
+  {{ forms.text({
+      id:     "fastlyApiKey",
+      name:   "fastlyApiKey",
+      value:  settings.fastlyApiKey
+  }) }}
+</div>
+
+<div class="field">
+  <div class="heading">
+    <label for="fastlyServiceId">Fastly Service Id</label>
+  </div>
+  <div class="instructions">
+    <p>Found in Fastly under "Configure" for a service</p>
+  </div>
+  {{ forms.text({
+      id:     "fastlyServiceId",
+      name:   "fastlyServiceId",
+      value:  settings.fastlyServiceId
+  }) }}
+</div>
