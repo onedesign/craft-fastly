@@ -55,18 +55,24 @@ class FastlyPlugin extends BasePlugin
   {
     $fastlyKey = $this->getSettings()->fastlyApiKey;
     $serviceId = $this->getSettings()->fastlyServiceId;
-    
-    $url = 'https://api.fastly.com/service/' . $serviceId . '/purge_all';
-    
-    $options = array(
-      'http' => array(
-          'header'  => "Fastly-Key: " . $fastlyKey . "\r\n" .
-                       "Accept: application/json\r\n",
-          'method'  => 'POST'
-      ),
-    );
 
-    $context  = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
+    $client = new \Guzzle\Http\Client();
+
+    $url = 'https://api.fastly.com/service/' . $serviceId . '/purge_all';
+
+    $headers = [
+      'Fastly-Key' => $fastlyKey,
+      'Accept' => 'application/json',
+    ];
+
+    $request = new \Guzzle\Http\Message\Request('POST', $url, $headers);
+
+    $response = $client->send($request);
+
+    if ($response->getStatusCode() == 200) {
+      return $response;
+    }
+
+    return 'Something went wrong.';
   }
 }
