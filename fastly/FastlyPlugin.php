@@ -8,7 +8,7 @@ class FastlyPlugin extends BasePlugin
   {
     // Whenever an entry is saved, bust the Fastly cache
     craft()->entries->onSaveEntry = function(Event $event) {
-      $this->purgeFastlyCache();
+      craft()->fastly->purgeFastlyCache();
     };
   }
 
