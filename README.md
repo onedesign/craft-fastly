@@ -16,6 +16,14 @@ To install, follow these steps:
 3. Open the settings for the plugin and add your Fastly account details
 4. You'll likely also need to make some updates to your server and Fastly settings as outlined [in this document](https://gist.github.com/cmalven/1a36d9062e9a8c733c1d). 
 
+## Usage
+
+If you'd like to clear the cache from another location in your craft install, you can purge the cache directly like so:
+
+`craft()->fastly->purgeFastlyCache()`
+
+This will return a boolean value that tells you whether the cache successfully cleared or not. If it fails, Fastly will log the Status Code into `fastly.log`.
+
 ## Templating
 
 To add the necessary headers to your templates, just add the following to the very top of your `_layout.html` template:
