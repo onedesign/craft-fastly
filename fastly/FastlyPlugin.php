@@ -50,29 +50,4 @@ class FastlyPlugin extends BasePlugin
          'settings' => $this->getSettings()
      ));
   }
-
-  public function purgeFastlyCache()
-  {
-    $fastlyKey = $this->getSettings()->fastlyApiKey;
-    $serviceId = $this->getSettings()->fastlyServiceId;
-
-    $client = new \Guzzle\Http\Client();
-
-    $url = 'https://api.fastly.com/service/' . $serviceId . '/purge_all';
-
-    $headers = [
-      'Fastly-Key' => $fastlyKey,
-      'Accept' => 'application/json',
-    ];
-
-    $request = new \Guzzle\Http\Message\Request('POST', $url, $headers);
-
-    $response = $client->send($request);
-
-    if ($response->getStatusCode() == 200) {
-      return $response;
-    }
-
-    return 'Something went wrong. Status Code: ' . $response->getStatusCode();
-  }
 }
