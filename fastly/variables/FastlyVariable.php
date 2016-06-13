@@ -10,7 +10,7 @@ class FastlyVariable
      * @return string
      */
     public function headers()
-    {   
+    {
         $headerTemplate = '
             {% set expiry = now|date_modify(\'+30 days\') %}
             {% header "Cache-Control: max-age=" ~ expiry.timestamp %}
