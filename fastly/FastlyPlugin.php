@@ -35,6 +35,15 @@ class FastlyPlugin extends BasePlugin
         return '0.1';
     }
 
+    /**
+     * Define the schema version
+     * 
+     * @return string
+     */
+    public function getSchemaVersion()
+    {
+        return '0.1';
+    }
 
     /**
      * The Developer
@@ -77,7 +86,7 @@ class FastlyPlugin extends BasePlugin
 
     /**
      * Get the settings template
-     * 
+     *
      * @return mixed
      */
     public function getSettingsHtml()
